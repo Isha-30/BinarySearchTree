@@ -10,9 +10,10 @@ public class Main {
         root.right.right=new Node(18);
         int x=20;
 
-        root=insertIterative(root,x);
-
+        //root=insertRecursive(root,x);
+        root = insertIterative(root, x);
         inorder(root);
+
     }
 
     public static Node insertRecursive(Node node, int x){
@@ -21,14 +22,29 @@ public class Main {
         else if(node.data > x) node.left = insertRecursive(node.left, x);
         return node;
     }
-    public static Node insertIterative(Node node, int x){
-        while(node!= null){
-            if(node.data > x) node = node.left;
-            else node = node.right;
+
+    public static Node insertIterative(Node root, int x){
+        Node temp = new Node(x);
+        Node parent = null, curr = root;
+        while(curr!=null){
+            parent = curr;
+            if(curr.data > x)
+                curr = curr.left;
+            else if(curr.data<x)
+                curr = curr.right;
+            else
+                return root;
         }
-        if(node == null) return new Node(x);
-        return node;
+
+        if(parent==null)
+            return temp;
+        if(parent.data>x)
+            parent.left = temp;
+        else
+            parent.right = temp;
+        return root;
     }
+    
     private static void inorder(Node node){
         if(node!= null){
             inorder(node.left);
