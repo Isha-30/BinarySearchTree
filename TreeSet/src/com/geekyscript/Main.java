@@ -31,5 +31,12 @@ public class Main {
         s1.remove(10);
         for(Integer x : s1)
             System.out.print(x + " ");
+        System.out.println();
+        System.out.println("--------Lower, higher, floor, ceil--------");
+
+        System.out.println("Lower "+ s1.lower(14));
+        System.out.println("Higher " + s1.higher(14));
+        System.out.println("Floor " + s1.floor(12));
+        System.out.println("Ceiling " + s1.ceiling(12));
     }
 }
