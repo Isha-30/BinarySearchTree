@@ -15,14 +15,31 @@ public class Main {
         }
         inorder(root);
         System.out.println();
-        printKth(root, 3);
+        System.out.println(printKth(root, 3).data);;
     }
 
-    private static Node insert(Node node, int x){
+    public static Node insert(Node node, int x){
         if(node == null) return new Node(x);
-        else if(node.data < x) node.right = insert(node.right, x);
-        else if(node.data > x) node.left = insert(node.left, x);
+        else if(node.data < x){
+            node.right = insert(node.right, x);
+        }
+        else if(node.data > x){
+            node.left = insert(node.left, x);
+            node.lcount++;
+        }
         return node;
+    }
+    public static Node printKth(Node root, int k){
+        if(root == null) return null;
+        int count = root.lcount + 1;
+        if(count==k)
+            return root;
+        if(count>k)
+            return printKth(root.left, k);
+
+        return printKth(root.right, k-count);
+
+
     }
 
     private static void inorder(Node node){
@@ -32,16 +49,18 @@ public class Main {
             inorder(node.right);
         }
     }
-    static int count = 0;
-    public static void printKth(Node root, int k){
-        if(root!=null){
-            printKth(root.left, k);
-            count++;
-            if(count==k) {
-                System.out.print(root.data);
-                return;
-            }
-            printKth(root.right, k);
-        }
-    }
+//    static int count = 0;
+//    public static void printKth(Node root, int k){
+//        if(root!=null){
+//            printKth(root.left, k);
+//            count++;
+//            if(count==k) {
+//                System.out.print(root.data);
+//                return;
+//            }
+//            printKth(root.right, k);
+//        }
+//    }
+
+
 }
