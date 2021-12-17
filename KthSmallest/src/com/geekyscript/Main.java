@@ -5,13 +5,10 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the number of elements: ");
-        int n = sc.nextInt();
-        Node root = new Node(50);
-        for(int i = 0; i<n; i++){
-            int ele = sc.nextInt();
-            insert(root, ele);
+        int arr[] = {50, 20, 10, 40, 70, 100, 120, 60, 80};
+        Node root = new Node(arr[0]);
+        for(int i = 1; i<arr.length; i++){
+            insert(root, arr[i]);
         }
         inorder(root);
         System.out.println();
