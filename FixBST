@@ -1,0 +1,15 @@
+static Node prev=null,first=null,second=null;
+    public static void fixBST(Node root)  
+    {  
+        if (root == null)  
+            return;  
+        fixBST(root.left);
+        if(prev!=null && root.key<prev.key){
+            if(first==null)
+                first=prev;
+            second=root;
+        }
+        prev=root;
+        
+        fixBST(root.right);
+    }
