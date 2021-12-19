@@ -1,5 +1,15 @@
 package com.geekyscript;
 
+public class Node{
+    int key;
+    Node left, right;
+    
+    Node(int x){
+    this.key = x;
+    left = right = nul;
+    }
+}
+
 public class Main {
 
     public static void main(String[] args) {
