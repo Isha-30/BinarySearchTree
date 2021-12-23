@@ -1,0 +1,22 @@
+ class Solution {
+    static int count = 0;
+    static int number = 0;
+    public int kthSmallest(TreeNode root, int k) {
+        count = k;
+        findVal(root);
+        return number;
+    }
+    private void findVal(TreeNode root){
+        if(root.left!=null)
+            findVal(root.left);
+        
+        count--;
+        if(count == 0){
+            number = root.val;
+            return;
+        }
+        
+        if(root.right!=null)
+            findVal(root.right);
+    }
+}
