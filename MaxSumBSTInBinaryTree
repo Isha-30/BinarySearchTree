@@ -1,0 +1,48 @@
+class Solution {
+    int maxSum = 0;
+    public int maxSumBST(TreeNode root) {
+        findMax(root);
+        return maxSum;
+    }
+    
+    private Capsule findMax(TreeNode root){
+        if(root == null) return null;
+        
+        Capsule left = findMax(root.left);
+        Capsule right = findMax(root.right);
+        
+        Capsule curr = new Capsule(root);
+        if(left != null){
+            curr.sum += left.sum;
+            curr.max = Math.max(root.val, left.max);
+            curr.min = Math.min(root.val, left.min);
+            curr.isBST = left.isBST && left.max<root.val;
+        }
+        if(right != null){
+            curr.sum += right.sum;
+            curr.max = Math.max(curr.max, right.max);
+            curr.min = Math.min(curr.min, right.min);
+            curr.isBST &= right.isBST && right.min>root.val;
+        }
+        
+        if(curr.isBST)
+            maxSum = Math.max(maxSum, curr.sum);
+        
+        return curr;
+    }
+    
+    static class Capsule{
+        final TreeNode node;
+        int sum;
+        int max;
+        int min;
+        boolean isBST = true;
+        
+        public Capsule(TreeNode node){
+            this.node = node;
+            this.sum = node.val;
+            this.max = node.val;
+            this.min = node.val;
+        }
+    }
+}
